@@ -4,25 +4,25 @@ clear all
 [Bird, Fs_Bird] = audioread('Birds.wav'); 
 birdInfo =audioinfo("Birds.wav");
 numChanel_bird = birdInfo.NumChannels
-%audiowrite('BirdsLow.wav', Bird, Fs_Bird)
-%audiowrite('BirdsHigh.wav', Bird, Fs_Bird)
+audiowrite('BirdsLow.wav', Bird, Fs_Bird)
+audiowrite('BirdsHigh.wav', Bird, Fs_Bird)
 
 
 [Drum, Fs_Drum] = audioread('Drum.wav');
 DrumInfo =audioinfo("Drum.wav");
 numChanel_Drum = DrumInfo.NumChannels
-%audiowrite('DrumLow.wav', Drum, Fs_Drum)
-%audiowrite('DrumHigh.wav', Drum, Fs_Drum)
+audiowrite('DrumLow.wav', Drum, Fs_Drum)
+audiowrite('DrumHigh.wav', Drum, Fs_Drum)
 
 [Speech, Fs_Speech] = audioread('Speech.wav');
 SpeechInfo =audioinfo("Speech.wav");
 numChanel_Speech = SpeechInfo.NumChannels
-%audiowrite('SpeechLow.wav', Speech, Fs_Speech)
-%audiowrite('SpeechHigh.wav', Speech, Fs_Speech)
+audiowrite('SpeechLow.wav', Speech, Fs_Speech)
+audiowrite('SpeechHigh.wav', Speech, Fs_Speech)
 
-%sound(Bird, Fs_Bird)
-%sound(Speech,Fs_Speech)
-%sound(Drum,Fs_Drum)
+sound(Bird, Fs_Bird)
+sound(Speech,Fs_Speech)
+sound(Drum,Fs_Drum)
 
 %plot
 subplot(3,2,[1,2])
