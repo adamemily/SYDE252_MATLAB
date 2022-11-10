@@ -1,10 +1,13 @@
 function [Data_out, Fs] = audioFunction(audioFile)
 
     [Data, Fs] = audioread(audioFile); 
-    %Data = resample(Data, 16000, Fs); %resample to 16kHz
+
+    new_freq = 16000;
+    Data = resample(Data, new_freq, Fs); %resample to 16kHz
+    Fs = Fs * new_freq/Fs;
+
     DataInfo = audioinfo(audioFile);
     numChannel_Data = DataInfo.NumChannels;
-    Fs = DataInfo.SampleRate;
 
     %sum channels together
     if numChannel_Data > 1
