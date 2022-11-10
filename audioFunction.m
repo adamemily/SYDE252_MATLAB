@@ -1,13 +1,10 @@
-function Data_out = audioFunction(audioFile)
+function [Data_out, Fs] = audioFunction(audioFile)
 
     [Data, Fs] = audioread(audioFile); 
+    %Data = resample(Data, 16000, Fs); %resample to 16kHz
     DataInfo = audioinfo(audioFile);
     numChannel_Data = DataInfo.NumChannels;
-
-    audioFile = erase(audioFile, ".wav");
-    newName = audioFile + "Low.wav";
-    dt_Data = 1/Fs;
-    t = 0:dt_Data:(length(Data)*dt_Data)-dt_Data;
+    Fs = DataInfo.SampleRate;
 
     %sum channels together
     if numChannel_Data > 1
@@ -27,11 +24,14 @@ function Data_out = audioFunction(audioFile)
         Data_out = Data;
     end
 
+    audioFile = erase(audioFile, ".wav");
+    newName = audioFile + "_resampled.wav";
     audiowrite(newName, Data_out, Fs);
-    sound(Data_out, Fs);
-    pause(10);
-    plot(t,Data_out);
 
-    xlabel('Seconds'); 
-    ylabel('Amplitude');
+    %sound(Data_out, Fs);
+    %pause(10);
+    %dt_Data = 1/Fs;
+    %t = 0:dt_Data:(length(Data)*dt_Data)-dt_Data;
+    %plot(t,Data_out); xlabel('Seconds'); ylabel('Amplitude');
+    
 end
