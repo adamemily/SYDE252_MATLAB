@@ -1,7 +1,7 @@
 clc
 clear all 
 
-y = audioFunction('Drum.wav');
+y = audioFunction('Speech.wav');
 
 % [Bird, Fs_Bird] = audioread('Birds.wav'); 
 % birdInfo =audioinfo("Birds.wav");

@@ -1,4 +1,4 @@
-function Data = audioFunction(audioFile)
+function Data_out = audioFunction(audioFile)
 
     [Data, Fs] = audioread(audioFile); 
     DataInfo = audioinfo(audioFile);
@@ -22,16 +22,15 @@ function Data = audioFunction(audioFile)
         end
         
         Data_combined = rescale(Data_combined, -1, 1); %to avoid clipping warning
-        audiowrite(newName, Data_combined, Fs);
-        sound(Data_combined, Fs);
-        pause(10);
-        plot(t,Data_combined);
+        Data_out = Data_combined;
     else
-        audiowrite(newName, Data, Fs);
-        sound(Data, Fs);
-        pause(10);
-        plot(t,Data);
+        Data_out = Data;
     end
+
+    audiowrite(newName, Data_out, Fs);
+    sound(Data_out, Fs);
+    pause(10);
+    plot(t,Data_out);
 
     xlabel('Seconds'); 
     ylabel('Amplitude');
