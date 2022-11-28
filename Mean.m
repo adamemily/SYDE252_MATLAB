@@ -1,14 +1,15 @@
-function y = Mean(Data, Fs)
+function y = Mean(Data, Fs, window)
 
-window = 15;  
+%window = 15;  
 b = (1/window)*ones(1,window);
 a = 1;
 y = filter(b,a,Data);
-dt_Data = 1/Fs;
-t = 0:dt_Data:(length(Data)*dt_Data)-dt_Data;
+% dt_Data = 1/Fs;
+% t = 0:dt_Data:(length(Data)*dt_Data)-dt_Data;
 
-sound(y);
+% sound(y);
 
-hold on
-plot(t,y)
-legend('Filtered Data')  
+% hold on
+% plot(t,abs(y))
+% legend('Filtered Data')  
+end

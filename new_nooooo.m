@@ -1,7 +1,17 @@
 clc
 clear all 
 
-y = audioFunction('Speech.wav');
+t = 0:1:4
+
+x = [1 2 3 2 1]
+subplot(2,1,1)
+plot(t,x);
+xlabel('Seconds'); ylabel('Amplitude');
+
+h = 1/3.*
+
+
+
 
 % [Bird, Fs_Bird] = audioread('Birds.wav'); 
 % birdInfo =audioinfo("Birds.wav");

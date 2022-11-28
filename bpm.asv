@@ -1,5 +1,0 @@
-clc
-clear all
-
-[y, Fs] = audioFunction('Drum.wav');
-findpeaks(y,Fs,'MinPeakDistance',0.3, )
