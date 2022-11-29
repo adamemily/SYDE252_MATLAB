@@ -1,17 +1,18 @@
 clc
 clear all
 
+%read signal
 [y_unfiltered, Fs] = audioFunction('Birds.wav');
+
+% apply weighted average filter
+y_filtered = weightedAvgFunc(y_unfiltered, Fs, 8);
+
+% plot original graph for comparison
 
 dt_Data = 1/Fs;
 t = 0:dt_Data:(length(y_unfiltered)*dt_Data)-dt_Data;
 
-y_filtered = weightedAvgFunc(y_unfiltered, Fs, 8);
-
-
 hold on
-
-%Plot original graph for comparison
 
 plot(t,y_filtered); 
 title('Silent Regions');
@@ -19,9 +20,10 @@ xlabel('Seconds (s)');
 ylabel('Amplitude');
 
 
-L = length(y_filtered)
+L = length(y_filtered) % length of array of signal
 
-
+% make areas with high volume solid "blocks" of signal at HIGH
+% everything else is LOW
 for i=1:1:(L-1000)
     silentBlock = true;
     
@@ -45,19 +47,19 @@ end
 %Plot peaks
 plot(t,y_filtered); 
 
-
-
-sampleTime = L/Fs % audio signal timespan
-
+% audio signal timespan
+sampleTime = L/Fs;
 
 
 %Print silent regions to console
 
-fprintf('Silent region starting at 0')
+fprintf('Silent region starting at 0');
 
 
 silentStart = 0;
 
+
+%Print silent regions to console and display as patch on graphs
 for i=1:1:(L-1000)
     if (y_filtered(i) == 0.1 && y_filtered(i+1) == 0)
         timeStamp = (i/L)*sampleTime;
@@ -80,6 +82,7 @@ for i=1:1:(L-1000)
     
 end
 
+patch([timeStamp timeStamp sampleTime sampleTime],[-0.1 0.1 0.1 -0.1],'red','FaceAlpha',0.5);
 
 fprintf(', Silent region ending at %d\n',sampleTime)
 
