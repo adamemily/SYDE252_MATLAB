@@ -4,7 +4,7 @@ clear all
 window = 8;
 
 hold on
-[y_unfiltered, Fs] = audioFunction('Drum.wav');
+[y_unfiltered, Fs] = audioFunction('Birds.wav');
 dt_Data = 1/Fs;
 t = 0:dt_Data:(length(y_unfiltered)*dt_Data)-dt_Data;
 %subplot(2,1,1)

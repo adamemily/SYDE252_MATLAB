@@ -5,18 +5,18 @@ clear all
 
 y_filtered = Mean(y_unfiltered, Fs, 20);
 
+
+dt_Data = 1/Fs;
+t = 0:dt_Data:(length(y_filtered)*dt_Data)-dt_Data;
+
+hold on 
+plot(t,y_filtered); 
+title('Beats Per Minute');
+xlabel('Seconds (s)');
+ylabel('Amplitude');
+
 findpeaks(abs(y_filtered),Fs,'MinPeakHeight',0.02,'MinPeakDistance',0.18) %graph
-pks = findpeaks(abs(y_filtered),Fs,'MinPeakHeight',0.02,'MinPeakDistance',0.18)
-numPeaks = size(pks,1)
+pks = findpeaks(abs(y_filtered),Fs,'MinPeakHeight',0.02,'MinPeakDistance',0.18);
+numSyllables = size(pks,1)
 
 
-% %graph silent regions
-% detectSpeech(abs(y),Fs)
-% 
-% 
-% [idx,thresholds] = detectSpeech(abs(y),Fs);
-% 
-% %output values
-% idx
-% numSyll = size(idx,1)
-% thresholds
